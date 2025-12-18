@@ -1,0 +1,69 @@
+#spring:
+#  data:
+#    mongodb:
+#      uri: mongodb://localhost:27017/
+#      database: recommendations
+#  kafka:
+#    bootstrap-servers: localhost:9092
+#    consumer:
+#      group-id: activity-processor-group
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#      properties:
+#        spring.json.use.type.headers: false
+#        spring.json.value.default.type: com.fitness.aiservice.models.Activity
+#        spring.json.trusted.packages: "*"
+#kafka:
+#  topic:
+#    name: activity-events
+#
+#server:
+#  port: 8083
+#
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#gemini:
+#  api:
+#    url: ${GEMINI_URL}
+#    key: ${GEMINI_KEY}
+##    url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent
+##    key: AIzaSyAQaCOzWVd-nmIt0pNM8UiPgl1oYXXItAY
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/
+      database: recommendations
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: activity-processor-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.use.type.headers: false
+        spring.json.value.default.type: com.fitness.aiservice.models.Activity
+        spring.json.trusted.packages: "*"
+
+kafka:
+  topic:
+    name: activity-events
+
+server:
+  port: 8083
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: localhost:${spring.application.name}:${server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+gemini:
+  api:
+    url: ${GEMINI_URL}
+    key: ${GEMINI_KEY}
