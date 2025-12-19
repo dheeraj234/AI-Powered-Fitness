@@ -35,7 +35,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://localhost:8181/realms/fitness-app/protocol/openid-connect/certs
+          jwk-set-uri: https://keycloak-server-8qaj.onrender.com/realms/fitness-app/protocol/openid-connect/certs
 
   cloud:
     gateway:
