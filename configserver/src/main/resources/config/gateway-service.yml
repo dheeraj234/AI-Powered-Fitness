@@ -39,6 +39,14 @@ spring:
 
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "https://ai-powered-fitness.netlify.app"
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
       routes:
         - id: user-service
           uri: lb://USER-SERVICE
@@ -63,4 +71,4 @@ eureka:
     instance-id: localhost:${spring.application.name}:${server.port}
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: https://eureka-server-6mb3.onrender.com/eureka/
