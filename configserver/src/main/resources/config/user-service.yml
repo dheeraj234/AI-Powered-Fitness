@@ -18,9 +18,12 @@
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/fitness-micro-user
-    username: postgres
-    password: admin@123
+    url: jdbc:postgresql://ep-lucky-credit-a4zcn6ta-pooler.us-east-1.aws.neon.tech:5432/AI-Fitness?sslmode=require
+    username: ${NEON_USERNAME}
+    password: ${NEON_PASSWORD}
+#    url: jdbc:postgresql://localhost:5432/fitness-micro-user
+#    username: postgres
+#    password: admin@123
   jpa:
     hibernate:
       ddl-auto: update

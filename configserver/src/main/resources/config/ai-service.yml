@@ -33,19 +33,37 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://localhost:27017/
-      database: recommendations
-
+      uri: mongodb+srv://${MONGO_USERNAME}:${MONGO_PASSWORD}@cluster0.ep1hkvd.mongodb.net/
+      database: AI-Fitness
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${KAFKA_BOOTSTRAP}
+    properties:
+      security.protocol: SASL_SSL
+      sasl.mechanism: SCRAM-SHA-256
+      sasl.jaas.config: |
+        org.apache.kafka.common.security.scram.ScramLoginModule required
+        username="${KAFKA_USERNAME}"
+        password="${KAFKA_PASSWORD}";
     consumer:
       group-id: activity-processor-group
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.use.type.headers: false
-        spring.json.value.default.type: com.fitness.aiservice.models.Activity
         spring.json.trusted.packages: "*"
+        spring.json.value.default.type: com.fitness.aiservice.models.Activity
+        spring.json.use.type.headers: false
+
+
+#  kafka:
+#    bootstrap-servers: localhost:9092
+#    consumer:
+#      group-id: activity-processor-group
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#      properties:
+#        spring.json.use.type.headers: false
+#        spring.json.value.default.type: com.fitness.aiservice.models.Activity
+#        spring.json.trusted.packages: "*"
 
 kafka:
   topic:
