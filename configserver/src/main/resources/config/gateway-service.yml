@@ -68,7 +68,7 @@ server:
 eureka:
   instance:
     prefer-ip-address: true
-    hostname: gateway-server
+    instance-id: ${spring.application.name}:${server.port}
   client:
     serviceUrl:
       defaultZone: https://eureka-server-6mb3.onrender.com/eureka/
