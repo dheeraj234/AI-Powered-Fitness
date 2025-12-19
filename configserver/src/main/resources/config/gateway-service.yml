@@ -46,6 +46,7 @@ spring:
               - "https://ai-powered-fitness.netlify.app"
             allowedMethods: "*"
             allowedHeaders: "*"
+            exposedHeaders: "*"
             allowCredentials: true
       routes:
         - id: user-service
@@ -66,9 +67,8 @@ server:
 
 eureka:
   instance:
-    hostname: localhost
     prefer-ip-address: true
-    instance-id: localhost:${spring.application.name}:${server.port}
+    hostname: gateway-server
   client:
     serviceUrl:
       defaultZone: https://eureka-server-6mb3.onrender.com/eureka/
